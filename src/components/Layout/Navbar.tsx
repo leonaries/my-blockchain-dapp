@@ -90,15 +90,17 @@ const Navbar: React.FC = () => {
     left: 0,
     right: 0,
     zIndex: 50,
-    width: '100%'
+    width: '100%',
+    height: '64px', // 明确设置高度
+    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
   };
 
   return (
     <nav className="relative z-50" style={navbarStyle}>
       {/* 主导航栏 - 横向布局 */}
-      <div className="bg-gradient-to-r from-gray-900/95 to-gray-800/95 backdrop-blur-xl border-b border-white/10 shadow-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+      <div className="bg-gradient-to-r from-gray-900/95 to-gray-800/95 backdrop-blur-xl border-b border-white/10 h-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+          <div className="flex items-center justify-between h-full">
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <Link to="/" className="flex items-center space-x-3 group">
