@@ -81,7 +81,7 @@ function App() {
           <Navbar />
           
           {/* 增加顶部间距，防止内容被导航栏覆盖 */}
-          <div className="pt-20"> {/* 从pt-16增加到pt-20，确保有足够的间距 */}
+          <div className="pt-24"> {/* 从pt-20增加到pt-24，确保有足够的间距 */}
             <div className="px-4 py-6 sm:px-6 lg:px-8 max-w-7xl mx-auto">
               {/* 主内容卡片 */}
               <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200/50 p-6 min-h-[calc(100vh-12rem)] relative">

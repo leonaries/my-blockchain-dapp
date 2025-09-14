@@ -89,10 +89,10 @@ const Navbar: React.FC = () => {
     top: 0,
     left: 0,
     right: 0,
-    zIndex: 50,
+    zIndex: 1000, // 增加z-index值，确保导航栏始终在内容之上
     width: '100%',
-    height: '64px', // 明确设置高度
-    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+    height: '72px', // 增加高度从64px到72px
+    boxShadow: '0 4px 10px -1px rgba(0, 0, 0, 0.2), 0 2px 6px -1px rgba(0, 0, 0, 0.1)'
   };
 
   return (
