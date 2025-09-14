@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 
 // Layout Components
 import Layout from '@components/Layout/Layout'
+import Navbar from '@components/Layout/Navbar' // 导入Navbar组件
 
 // Page Components
 import HomePage from '@pages/HomePage'
@@ -76,22 +77,37 @@ function App() {
 
         {/* 主要内容区域 */}
         <div className="relative z-10">
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              {/* Home Page */}
-              <Route index element={<HomePage />} />
-              
-              {/* Feature Pages */}
-              <Route path="users" element={<UserManagementPage />} />
-              <Route path="tokens" element={<TokenPage />} />
-              <Route path="transfer" element={<TransferPage />} />
-              <Route path="mining" element={<MiningPage />} />
-              <Route path="explorer" element={<ExplorerPage />} />
-              
-              {/* Redirect unknown routes to home */}
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Route>
-          </Routes>
+          {/* 直接使用Navbar组件 */}
+          <Navbar />
+          
+          <div className="pt-16"> {/* 添加顶部间距，为导航栏留出空间 */}
+            <div className="px-4 py-6 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+              {/* 主内容卡片 */}
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200/50 p-6 min-h-[calc(100vh-12rem)] relative">
+                {/* 内容区域装饰光效 */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full blur-2xl"></div>
+                <div className="absolute bottom-10 left-10 w-24 h-24 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-xl"></div>
+                
+                {/* 页面内容 */}
+                <div className="relative z-10">
+                  <Routes>
+                    {/* Home Page */}
+                    <Route path="/" element={<HomePage />} />
+                    
+                    {/* Feature Pages */}
+                    <Route path="users" element={<UserManagementPage />} />
+                    <Route path="tokens" element={<TokenPage />} />
+                    <Route path="transfer" element={<TransferPage />} />
+                    <Route path="mining" element={<MiningPage />} />
+                    <Route path="explorer" element={<ExplorerPage />} />
+                    
+                    {/* Redirect unknown routes to home */}
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                  </Routes>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* 底部装饰效果 */}

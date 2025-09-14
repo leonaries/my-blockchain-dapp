@@ -90,15 +90,15 @@ const WalletConnector: React.FC = () => {
                   >
                     <div className="flex items-center space-x-3 flex-1">
                       <div className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center p-1">
-                        <img
-                          src={wallet.logo}
-                          alt={`${wallet.name} logo`}
-                          className="w-8 h-8 rounded-full"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement
+                      <img
+                        src={wallet.logo}
+                        alt={`${wallet.name} logo`}
+                        className="w-8 h-8 rounded-full"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement
                             target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIxIDhWMThoLTRWMTZoMlYxMGgtMlY4aDRaTTMuNSA2SDhWNEgzLjVDNC4zMyA0IDUgNC42NyA1IDUuNVYxOC41QzUgMTkuMzMgNC4zMyAyMCAzLjUgMjBIMlYxOGgxLjVWNloiIGZpbGw9IiMzMzczZGMiLz4KPC9zdmc+Cg=='
-                          }}
-                        />
+                        }}
+                      />
                       </div>
                       <div className="text-left">
                         <div className="font-medium text-secondary-900 flex items-center space-x-2">

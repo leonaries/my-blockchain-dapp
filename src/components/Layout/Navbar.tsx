@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { 
   Home, 
@@ -15,8 +15,15 @@ import {
 } from 'lucide-react'
 
 const Navbar: React.FC = () => {
+  console.log("Navbar component is being rendered!"); // 添加日志以确认组件是否被使用
+  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const location = useLocation()
+
+  // 组件挂载时添加日志
+  useEffect(() => {
+    console.log("Navbar component mounted!");
+  }, []);
 
   const navigation = [
     {
