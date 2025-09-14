@@ -23,6 +23,23 @@
   --bg-dark-glass: rgba(0, 0, 0, 0.2);
 }
 
+/* 强制水平导航样式 */
+body.horizontal-nav .fixed.left-0.top-0.bottom-0 {
+  display: none !important;
+}
+
+body.horizontal-nav .lg\:translate-x-0 {
+  transform: none !important;
+}
+
+body.horizontal-nav .lg\:ml-64 {
+  margin-left: 0 !important;
+}
+
+body.horizontal-nav .hidden.md\:flex {
+  display: flex !important;
+}
+
 /* Base Styles with Modern Web3 Theme */
 @layer base {
   * {

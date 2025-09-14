@@ -23,6 +23,13 @@ const Navbar: React.FC = () => {
   // 组件挂载时添加日志
   useEffect(() => {
     console.log("Navbar component mounted!");
+    
+    // 强制添加一个样式到body，确保旧的样式被覆盖
+    document.body.classList.add('horizontal-nav');
+    
+    return () => {
+      document.body.classList.remove('horizontal-nav');
+    };
   }, []);
 
   const navigation = [
@@ -76,8 +83,18 @@ const Navbar: React.FC = () => {
     return location.pathname.startsWith(href)
   }
 
+  // 添加内联样式，确保导航栏显示为水平布局
+  const navbarStyle: React.CSSProperties = {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 50,
+    width: '100%'
+  };
+
   return (
-    <nav className="relative z-50">
+    <nav className="relative z-50" style={navbarStyle}>
       {/* 主导航栏 - 横向布局 */}
       <div className="bg-gradient-to-r from-gray-900/95 to-gray-800/95 backdrop-blur-xl border-b border-white/10 shadow-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -100,8 +117,8 @@ const Navbar: React.FC = () => {
               </Link>
             </div>
             
-            {/* 桌面导航链接 */}
-            <div className="hidden md:flex items-center space-x-1">
+            {/* 桌面导航链接 - 强制水平显示 */}
+            <div className="hidden md:flex items-center space-x-1" style={{ display: 'flex', flexDirection: 'row' }}>
               {navigation.map((item) => {
                 const isCurrentPage = isActive(item.href)
                 const Icon = item.icon
@@ -117,6 +134,7 @@ const Navbar: React.FC = () => {
                         : 'text-gray-300 hover:text-white hover:bg-white/5'
                       }
                     `}
+                    style={{ marginRight: '8px' }} // 强制添加水平间距
                   >
                     <div className="flex items-center space-x-2">
                       {/* 图标容器 */}
@@ -172,7 +190,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
       
-      {/* 移动端菜单 */}
+      {/* 移动端菜单 - 下拉式 */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute inset-x-0 top-16 bg-gray-900/95 backdrop-blur-xl border-b border-white/10 shadow-xl">
           <div className="px-2 pt-2 pb-3 space-y-1">
