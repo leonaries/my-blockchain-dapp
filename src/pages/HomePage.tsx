@@ -4,7 +4,7 @@ import {
   Coins, 
   Users, 
   ArrowRightLeft, 
-  Pickaxe, 
+  Hammer, 
   Search,
   Wallet,
   TrendingUp,
@@ -46,7 +46,7 @@ const HomePage: React.FC = () => {
       bgColor: 'bg-green-50 border-green-200',
     },
     {
-      icon: <Pickaxe className="w-8 h-8" />,
+      icon: <Hammer className="w-8 h-8" />,
       title: '挖矿系统',
       description: '注册矿工，参与挖矿获得奖励，查看算力统计',
       link: '/mining',
@@ -77,7 +77,7 @@ const HomePage: React.FC = () => {
       suffix: '人',
     },
     {
-      icon: <Pickaxe className="w-6 h-6 text-warning-600" />,
+      icon: <Hammer className="w-6 h-6 text-warning-600" />,
       label: '活跃矿工',
       value: '123',
       suffix: '个',

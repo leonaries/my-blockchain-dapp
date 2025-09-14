@@ -15,6 +15,7 @@ export default defineConfig({
       '@types': path.resolve(__dirname, './src/types'),
       '@store': path.resolve(__dirname, './src/store'),
       '@services': path.resolve(__dirname, './src/services'),
+      crypto: 'crypto-js',
     },
   },
   server: {
@@ -29,4 +30,9 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react', 'react-dom'],
   },
+  // 解决crypto包问题
+  define: {
+    global: {},
+  },
+  // 提供Node.js内置模块的polyfill
 })

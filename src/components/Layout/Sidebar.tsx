@@ -5,7 +5,7 @@ import {
   Coins, 
   Users, 
   ArrowRightLeft, 
-  Pickaxe, 
+  Hammer, 
   Search,
   Menu,
   X,
@@ -45,7 +45,7 @@ const Sidebar: React.FC = () => {
     {
       name: '挖矿系统',
       href: '/mining',
-      icon: Pickaxe,
+      icon: Hammer,
       description: '矿工注册 / 挖矿奖励',
     },
     {
@@ -76,27 +76,27 @@ const Sidebar: React.FC = () => {
       {/* Mobile backdrop */}
       {isMobileOpen && (
         <div 
-          className="lg:hidden fixed inset-0 z-40 bg-secondary-900 bg-opacity-50"
+          className="lg:hidden fixed inset-0 z-40 bg-secondary-900 bg-opacity-50 backdrop-blur-sm"
           onClick={() => setIsMobileOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <div className={`
-        fixed left-0 top-0 bottom-0 z-40 bg-white/95 backdrop-blur-sm border-r border-secondary-200/50 transition-all duration-300
+        fixed left-0 top-0 bottom-0 z-40 transition-all duration-300 shadow-xl
         ${isCollapsed ? 'w-16' : 'w-64'}
         ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'}
-        lg:translate-x-0
+        lg:translate-x-0 bg-gradient-to-b from-primary-600 to-primary-800
       `}>
         {/* Header */}
-        <div className="p-4 border-b border-secondary-200/50">
+        <div className="p-4 border-b border-white/10">
           <div className="flex items-center justify-between">
             {!isCollapsed && (
               <Link to="/" className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">MB</span>
+                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                  <span className="text-primary-600 font-bold text-sm">MB</span>
                 </div>
-                <span className="font-semibold text-secondary-900">
+                <span className="font-semibold text-white">
                   My Blockchain
                 </span>
               </Link>
@@ -104,7 +104,7 @@ const Sidebar: React.FC = () => {
             
             <button
               onClick={() => setIsCollapsed(!isCollapsed)}
-              className="hidden lg:flex p-1 hover:bg-secondary-100 rounded"
+              className="hidden lg:flex p-1 hover:bg-white/10 rounded text-white"
             >
               {isCollapsed ? (
                 <ChevronRight className="w-4 h-4" />
@@ -116,7 +116,7 @@ const Sidebar: React.FC = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="p-4 space-y-2">
+        <nav className="p-4 space-y-1">
           {navigation.map((item) => {
             const isCurrentPage = isActive(item.href)
             const Icon = item.icon
@@ -127,22 +127,22 @@ const Sidebar: React.FC = () => {
                 to={item.href}
                 onClick={() => setIsMobileOpen(false)}
                 className={`
-                  flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200
+                  flex items-center space-x-3 px-3 py-3 rounded-lg transition-all duration-200
                   ${isCurrentPage 
-                    ? 'bg-primary-50 text-primary-700 border-r-2 border-primary-600' 
-                    : 'text-secondary-600 hover:bg-secondary-50 hover:text-secondary-900'
+                    ? 'bg-white/20 text-white border-l-4 border-white' 
+                    : 'text-white/70 hover:bg-white/10 hover:text-white border-l-4 border-transparent'
                   }
                 `}
                 title={isCollapsed ? item.name : undefined}
               >
-                <Icon className={`w-5 h-5 ${isCurrentPage ? 'text-primary-600' : ''}`} />
+                <Icon className={`w-5 h-5 ${isCurrentPage ? 'text-white' : ''}`} />
                 {!isCollapsed && (
                   <div className="flex-1 min-w-0">
                     <div className="font-medium text-sm">
                       {item.name}
                     </div>
                     {item.description && (
-                      <div className="text-xs text-secondary-500 mt-0.5 leading-tight">
+                      <div className="text-xs text-white/50 mt-0.5 leading-tight">
                         {item.description}
                       </div>
                     )}
@@ -155,8 +155,8 @@ const Sidebar: React.FC = () => {
 
         {/* Footer */}
         {!isCollapsed && (
-          <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-secondary-200/50">
-            <div className="text-xs text-secondary-500 text-center">
+          <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-white/10">
+            <div className="text-xs text-white/50 text-center">
               <p className="mb-1">Cosmos SDK v0.50.1</p>
               <p>Built with React + TypeScript</p>
             </div>
