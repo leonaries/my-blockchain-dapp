@@ -114,170 +114,190 @@ const HomePage: React.FC = () => {
   ]
 
   return (
-    <div className="space-y-12">
-      {/* Hero Section */}
-      <section className="text-center space-y-6">
-        <div className="space-y-4">
-          <h1 className="text-4xl md:text-6xl font-bold text-gradient">
-            My Blockchain DApp
-          </h1>
-          <p className="text-xl text-secondary-600 max-w-2xl mx-auto">
-            基于 Cosmos SDK 的去中心化应用，提供完整的区块链生态系统功能
-          </p>
+    <div className="space-y-16">
+      {/* Hero Section - 水平布局 */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-4xl md:text-6xl font-bold text-gradient mb-4">
+              My Blockchain DApp
+            </h1>
+            <p className="text-xl text-secondary-600">
+              基于 Cosmos SDK 的去中心化应用，提供完整的区块链生态系统功能
+            </p>
+          </div>
+          
+          <div className="flex flex-wrap gap-4 pt-4">
+            <Link to="/tokens" className="btn-gradient px-6 py-3">
+              开始使用
+            </Link>
+            <Link to="/explorer" className="btn-secondary px-6 py-3">
+              浏览区块链
+            </Link>
+          </div>
         </div>
-
-        {/* Wallet Connection */}
-        {!connectedWallet ? (
-          <div className="max-w-md mx-auto">
-            <WalletConnector />
-          </div>
-        ) : (
-          <div className="card max-w-md mx-auto">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-primary rounded-full flex items-center justify-center">
-                <Wallet className="w-5 h-5 text-white" />
-              </div>
-              <div className="flex-1 text-left">
-                <p className="font-medium text-secondary-900">
-                  {connectedWallet.name} 已连接
-                </p>
-                <p className="text-sm text-secondary-600">
-                  {`${connectedWallet.address.slice(0, 10)}...${connectedWallet.address.slice(-8)}`}
-                </p>
-              </div>
-              <div className="text-right">
-                <p className="font-semibold text-primary-600">
-                  {parseInt(connectedWallet.balance).toLocaleString()} TOKEN
-                </p>
-                <p className="text-xs text-secondary-500">余额</p>
-              </div>
-            </div>
-          </div>
-        )}
-      </section>
-
-      {/* Statistics */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {stats.map((stat, index) => (
-          <div key={index} className="card text-center">
-            <div className="flex justify-center mb-3">
-              {stat.icon}
-            </div>
-            <div className="stat-value text-2xl">
-              {stat.value}
-              {stat.suffix && <span className="text-base ml-1">{stat.suffix}</span>}
-            </div>
-            <div className="stat-label">{stat.label}</div>
-          </div>
-        ))}
-      </section>
-
-      {/* Features */}
-      <section>
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-secondary-900 mb-4">
-            功能特性
-          </h2>
-          <p className="text-secondary-600 max-w-2xl mx-auto">
-            探索我们完整的区块链功能生态系统，从代币管理到挖矿系统，一应俱全
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <Link
-              key={index}
-              to={feature.link}
-              className={`card-hover group ${feature.bgColor} border-2 hover:shadow-xl transition-all duration-300`}
-            >
-              <div className="flex items-start space-x-4">
-                <div className={`p-3 rounded-xl bg-gradient-to-br ${feature.color} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                  {feature.icon}
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-lg font-semibold text-secondary-900">
-                      {feature.title}
-                    </h3>
-                    <ChevronRight className="w-5 h-5 text-secondary-400 group-hover:text-primary-500 group-hover:translate-x-1 transition-all duration-300" />
+        
+        <div className="relative">
+          {/* 装饰背景元素 */}
+          <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-primary-300/20 to-secondary-300/20 rounded-full blur-3xl"></div>
+          
+          {/* 钱包连接卡片 */}
+          <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-gray-100 p-8 transform hover:scale-105 transition-transform duration-300">
+            {!connectedWallet ? (
+              <div className="space-y-6">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto">
+                    <Wallet className="w-8 h-8 text-white" />
                   </div>
-                  <p className="text-secondary-600 text-sm leading-relaxed">
-                    {feature.description}
+                  <h3 className="text-xl font-semibold mt-4 text-secondary-900">连接钱包</h3>
+                  <p className="text-secondary-600 mt-2">连接您的钱包以访问完整功能</p>
+                </div>
+                <WalletConnector />
+              </div>
+            ) : (
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center">
+                    <Wallet className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-secondary-900">
+                      {connectedWallet.name} 已连接
+                    </h3>
+                    <p className="text-sm text-secondary-600 font-mono">
+                      {`${connectedWallet.address.slice(0, 10)}...${connectedWallet.address.slice(-8)}`}
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="bg-secondary-50 rounded-lg p-4 flex justify-between items-center">
+                  <span className="text-secondary-600">余额</span>
+                  <span className="font-semibold text-xl text-primary-600">
+                    {parseInt(connectedWallet.balance).toLocaleString()} TOKEN
+                  </span>
+                </div>
+                
+                <div className="flex gap-3">
+                  <Link to="/tokens" className="btn-primary flex-1 py-2 text-center">
+                    发送
+                  </Link>
+                  <Link to="/explorer" className="btn-secondary flex-1 py-2 text-center">
+                    查看交易
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Statistics - 水平卡片 */}
+      <section className="bg-white/50 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-100 p-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {stats.map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="flex justify-center mb-3">
+                {stat.icon}
+              </div>
+              <div className="text-2xl font-bold text-secondary-900">
+                {stat.value}
+                {stat.suffix && <span className="text-base ml-1">{stat.suffix}</span>}
+              </div>
+              <div className="text-sm text-secondary-500 uppercase tracking-wide">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Features + Advantages - 水平分栏布局 */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* 左侧：功能特性 */}
+        <div className="lg:col-span-2 space-y-8">
+          <div>
+            <h2 className="text-3xl font-bold text-secondary-900 mb-2 flex items-center">
+              <span className="w-2 h-8 bg-primary-500 rounded-full mr-3"></span>
+              功能特性
+            </h2>
+            <p className="text-secondary-600 max-w-2xl">
+              探索我们完整的区块链功能生态系统，从代币管理到挖矿系统，一应俱全
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            {features.map((feature, index) => (
+              <Link
+                key={index}
+                to={feature.link}
+                className={`card-hover group ${feature.bgColor} border hover:shadow-xl transition-all duration-300 overflow-hidden relative`}
+              >
+                <div className="flex items-start p-5">
+                  <div className={`p-3 rounded-xl bg-gradient-to-br ${feature.color} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    {feature.icon}
+                  </div>
+                  <div className="ml-4 flex-1">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-lg font-semibold text-secondary-900">
+                        {feature.title}
+                      </h3>
+                      <ChevronRight className="w-5 h-5 text-secondary-400 group-hover:text-primary-500 group-hover:translate-x-1 transition-all duration-300" />
+                    </div>
+                    <p className="text-secondary-600 text-sm leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+                {/* 底部装饰 */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary-500/50 to-transparent"></div>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* 右侧：技术优势 */}
+        <div className="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-6 shadow-lg border border-gray-100">
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold text-secondary-900 mb-2">技术优势</h2>
+            <p className="text-secondary-600 text-sm">
+              基于最新的区块链技术栈，为用户提供安全、高效、易用的去中心化体验
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            {advantages.map((advantage, index) => (
+              <div key={index} className="flex items-start">
+                <div className="p-3 bg-white rounded-xl shadow-md mr-4">
+                  {advantage.icon}
+                </div>
+                <div>
+                  <h3 className="font-semibold text-secondary-900">
+                    {advantage.title}
+                  </h3>
+                  <p className="text-sm text-secondary-600 leading-relaxed mt-1">
+                    {advantage.description}
                   </p>
                 </div>
               </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Advantages */}
-      <section className="bg-gradient-to-br from-primary-50 to-secondary-50 -mx-6 px-6 py-12 rounded-2xl">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-secondary-900 mb-4">
-            技术优势
-          </h2>
-          <p className="text-secondary-600 max-w-2xl mx-auto">
-            基于最新的区块链技术栈，为用户提供安全、高效、易用的去中心化体验
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {advantages.map((advantage, index) => (
-            <div key={index} className="text-center space-y-3">
-              <div className="flex justify-center">
-                <div className="p-4 bg-white rounded-xl shadow-lg">
-                  {advantage.icon}
-                </div>
-              </div>
-              <h3 className="font-semibold text-secondary-900">
-                {advantage.title}
-              </h3>
-              <p className="text-sm text-secondary-600 leading-relaxed">
-                {advantage.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="text-center space-y-6">
-        <h2 className="text-3xl font-bold text-secondary-900">
-          准备开始了吗？
-        </h2>
-        <p className="text-secondary-600 max-w-xl mx-auto">
-          连接您的钱包，开始探索去中心化区块链世界的无限可能
-        </p>
-        
-        {!connectedWallet ? (
-          <div className="max-w-sm mx-auto">
-            <WalletConnector />
+            ))}
           </div>
-        ) : (
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              to="/tokens"
-              className="btn-gradient px-6 py-3"
-            >
-              开始使用代币功能
-            </Link>
+          
+          {/* CTA 按钮 */}
+          <div className="mt-8">
             <Link
               to="/explorer"
-              className="btn-secondary px-6 py-3"
+              className="block w-full bg-white text-center py-3 rounded-lg shadow-md border border-gray-200 text-primary-600 hover:bg-primary-50 transition-colors"
             >
-              浏览区块链数据
+              了解更多技术细节
             </Link>
           </div>
-        )}
-      </section>
+        </div>
+      </div>
 
       {/* Footer Info */}
-      <section className="text-center py-8 border-t border-secondary-200">
-        <p className="text-secondary-500 text-sm">
+      <section className="border-t border-secondary-200 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p className="text-secondary-500 text-sm mb-4 md:mb-0">
           基于 Cosmos SDK v0.50.1 构建 • 支持 CosmJS 集成 • 兼容 Keplr 钱包
         </p>
-        <div className="mt-4 flex justify-center space-x-6">
+        <div className="flex space-x-6">
           <a
             href="https://github.com/leonaries/my-blockchain"
             target="_blank"
